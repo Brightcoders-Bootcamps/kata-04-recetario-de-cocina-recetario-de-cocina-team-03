@@ -14,6 +14,7 @@ import {
   View,
   Text,
   StatusBar,
+  Button
 } from 'react-native';
 
 import {
@@ -25,8 +26,45 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 const App: () => React$Node = () => {
+
+  var data = [
+    {
+      id: "1",
+      name: "Peperonni Pizza Pokets",
+      description: "Fast food",
+      servings: "3",
+      love: "0",
+      ingredients: [
+        {
+        ingredient: 'milk',
+        quantity: '1 onze'
+        }, 
+        {
+        ingredient: 'milk',
+        quantity: '1 onze'
+        }
+      ]
+    },
+    {
+      id: "2",
+      name: "hola",
+      description: "comida rapida",
+      servings: "3",
+      love: "0",
+      ingredients: [{
+        ingredient: 'milk',
+        quantity: '1 onze'
+      }],
+    },
+  ];
+
+   function showIngredients(){
+    console.log(data);
+   };
+
   return (
     <>
+
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
@@ -40,11 +78,19 @@ const App: () => React$Node = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
+              <Text style={styles.sectionTitle}>Hello world!</Text>
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.js</Text> to change this
                 screen and then come back to see your edits.
               </Text>
+
+              <Button
+                onPress={showIngredients}
+                title="Learn More"
+                color="#841584"
+                accessibilityLabel="Learn more about this purple button"
+              />
+
             </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>See Your Changes</Text>
@@ -81,7 +127,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   body: {
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.black,
   },
   sectionContainer: {
     marginTop: 32,
@@ -90,19 +136,19 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: Colors.black,
+    color: Colors.white,
   },
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
-    color: Colors.dark,
+    color: Colors.white,
   },
   highlight: {
     fontWeight: '700',
   },
   footer: {
-    color: Colors.dark,
+    color: Colors.white,
     fontSize: 12,
     fontWeight: '600',
     padding: 4,
