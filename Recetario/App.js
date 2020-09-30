@@ -15,6 +15,9 @@ import {
   Text,
   StatusBar,
   Button,
+  Img,
+  Form, 
+  TextInput
 } from 'react-native';
 
 import {
@@ -26,6 +29,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 const App: () => React$Node = () => {
+
   var data = [
     {
       id: '1',
@@ -130,6 +134,30 @@ const App: () => React$Node = () => {
   function showIngredients() {
     console.log(data);
   }
+  
+ 
+
+  const ElementFood = (props) => {
+    return (
+      <View>
+        <Text style={styles.sectionTitle}>Imagen Aquí!</Text>
+        <Text style={styles.sectionTitle}>{props.name}!</Text>
+        <Text style={styles.sectionTitle}>Description</Text>
+      </View>
+    );
+  }
+
+  const inpSearch = () => {
+    let text="buscar"
+    return (
+      <View>
+        <TextInput
+                style={{ height: 40, borderColor: 'white', borderWidth: 1 }}
+                value={text}
+        />
+      </View>
+    );
+  }
 
   return (
     <>
@@ -145,13 +173,19 @@ const App: () => React$Node = () => {
             </View>
           )}
           <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Hello world!</Text>
+            <View style={styles.sectionContainer}>              
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.js</Text> to change this
                 screen and then come back to see your edits.
               </Text>
-
+              {/* <Input type="text" placeholder="What do you want to eat?"/> */}  
+              {/* <inpSearch />            */}
+              <TextInput
+                style={{ height: 40, borderColor: 'white', borderWidth: 1 }}
+                value="da"
+              />
+              <Text style={styles.sectionTitle}>TRENDING!</Text>
+              <ElementFood name='Pizza' />
               <Button
                 onPress={showIngredients}
                 title="Learn More"
@@ -159,25 +193,6 @@ const App: () => React$Node = () => {
                 accessibilityLabel="Learn more about this purple button"
               />
             </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
           </View>
         </ScrollView>
       </SafeAreaView>
