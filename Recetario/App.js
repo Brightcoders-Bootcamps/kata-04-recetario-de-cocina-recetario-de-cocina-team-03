@@ -37,6 +37,7 @@ const App: () => React$Node = () => {
       description: 'Fast food',
       servings: '3',
       love: '0',
+      image: 'imagen id: 1',
       ingredients: [
         {
           ingredient: 'milk',
@@ -54,6 +55,7 @@ const App: () => React$Node = () => {
       description: 'comida rapida',
       servings: '3',
       love: '0',
+      image: 'imagen id: 2',
       ingredients: [
         {
           ingredient: 'milk',
@@ -67,6 +69,7 @@ const App: () => React$Node = () => {
       description: 'Familiar food',
       servings: '3',
       love: '0',
+      image: 'imagen id: 3',
       ingredients: [
         {
           ingredient: 'refrigerated biscuit',
@@ -93,6 +96,7 @@ const App: () => React$Node = () => {
       description: '',
       servings: '3',
       love: '0',
+      image: 'imagen id: 4',
       ingredients: [
         {
           ingredient: 'all-purpose flour',
@@ -134,27 +138,15 @@ const App: () => React$Node = () => {
   function showIngredients() {
     console.log(data);
   }
-  
- 
 
   const ElementFood = (props) => {
     return (
-      <View>
-        <Text style={styles.sectionTitle}>Imagen Aquí!</Text>
-        <Text style={styles.sectionTitle}>{props.name}!</Text>
-        <Text style={styles.sectionTitle}>Description</Text>
-      </View>
-    );
-  }
-
-  const inpSearch = () => {
-    let text="buscar"
-    return (
-      <View>
-        <TextInput
-                style={{ height: 40, borderColor: 'white', borderWidth: 1 }}
-                value={text}
-        />
+      <View style={styles.card}>
+        {data.map(r => 
+          <Text style={styles.sectionTitle}>{r.image}</Text>
+          <Text style={styles.sectionTitle}>{r.name}</Text>
+          <Text style={styles.sectionTitle}>{r.description}</Text>
+        )}    
       </View>
     );
   }
@@ -173,19 +165,19 @@ const App: () => React$Node = () => {
             </View>
           )}
           <View style={styles.body}>
-            <View style={styles.sectionContainer}>              
+            <View style={styles.sectionContainer}>         
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.js</Text> to change this
                 screen and then come back to see your edits.
               </Text>
-              {/* <Input type="text" placeholder="What do you want to eat?"/> */}  
-              {/* <inpSearch />            */}
+
               <TextInput
-                style={{ height: 40, borderColor: 'white', borderWidth: 1 }}
+                style={styles.textInput}
+                placeholder="What do you want to eat?"
                 value="da"
               />
               <Text style={styles.sectionTitle}>TRENDING!</Text>
-              <ElementFood name='Pizza' />
+              <ElementFood />
               <Button
                 onPress={showIngredients}
                 title="Learn More"
@@ -212,8 +204,17 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.black,
   },
   sectionContainer: {
-    marginTop: 32,
+    marginTop: 25,
     paddingHorizontal: 24,
+  },
+  textInput: {
+    height: 40, 
+    borderColor: 'white',
+    borderWidth: 1
+  },
+  card: {
+    height: 30,
+    width:  40
   },
   sectionTitle: {
     fontSize: 24,
