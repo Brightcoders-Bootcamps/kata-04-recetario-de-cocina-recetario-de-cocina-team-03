@@ -51,7 +51,7 @@ const App: () => React$Node = () => {
     },
     {
       id: '2',
-      name: 'hola',
+      name: 'hamburguesa',
       description: 'comida rapida',
       servings: '3',
       love: '0',
@@ -142,14 +142,17 @@ const App: () => React$Node = () => {
   const ElementFood = (props) => {
     return (
       <View style={styles.card}>
-        {data.map(r => 
+        {data.map( r =>
+        <View key={r.id}>
           <Text style={styles.sectionTitle}>{r.image}</Text>
           <Text style={styles.sectionTitle}>{r.name}</Text>
           <Text style={styles.sectionTitle}>{r.description}</Text>
+         </View >
         )}    
       </View>
     );
   }
+
 
   return (
     <>
@@ -213,8 +216,8 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   card: {
-    height: 30,
-    width:  40
+    height: 250,
+    width:  500
   },
   sectionTitle: {
     fontSize: 24,
