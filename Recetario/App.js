@@ -14,7 +14,7 @@ import {
   View,
   Text,
   StatusBar,
-  Button
+  Button,
 } from 'react-native';
 
 import {
@@ -26,45 +26,45 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 const App: () => React$Node = () => {
-
   var data = [
     {
-      id: "1",
-      name: "Peperonni Pizza Pokets",
-      description: "Fast food",
-      servings: "3",
-      love: "0",
+      id: '1',
+      name: 'Peperonni Pizza Pokets',
+      description: 'Fast food',
+      servings: '3',
+      love: '0',
       ingredients: [
         {
-        ingredient: 'milk',
-        quantity: '1 onze'
-        }, 
+          ingredient: 'milk',
+          quantity: '1 onze',
+        },
         {
-        ingredient: 'milk',
-        quantity: '1 onze'
-        }
-      ]
+          ingredient: 'milk',
+          quantity: '1 onze',
+        },
+      ],
     },
     {
-      id: "2",
-      name: "hola",
-      description: "comida rapida",
-      servings: "3",
-      love: "0",
-      ingredients: [{
-        ingredient: 'milk',
-        quantity: '1 onze'
-      }],
+      id: '2',
+      name: 'hola',
+      description: 'comida rapida',
+      servings: '3',
+      love: '0',
+      ingredients: [
+        {
+          ingredient: 'milk',
+          quantity: '1 onze',
+        },
+      ],
     },
   ];
 
-   function showIngredients(){
+  function showIngredients() {
     console.log(data);
-   };
+  }
 
   return (
     <>
-
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
@@ -90,7 +90,6 @@ const App: () => React$Node = () => {
                 color="#841584"
                 accessibilityLabel="Learn more about this purple button"
               />
-
             </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>See Your Changes</Text>
