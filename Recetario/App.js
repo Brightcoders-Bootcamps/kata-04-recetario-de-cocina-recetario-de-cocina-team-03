@@ -15,8 +15,7 @@ import {
   Text,
   StatusBar,
   Button,
-  Img,
-  Form, 
+  Image, 
   TextInput
 } from 'react-native';
 
@@ -37,7 +36,7 @@ const App: () => React$Node = () => {
       description: 'Fast food',
       servings: '3',
       love: '0',
-      image: 'imagen id: 1',
+      image: '1',
       ingredients: [
         {
           ingredient: 'milk',
@@ -55,7 +54,7 @@ const App: () => React$Node = () => {
       description: 'comida rapida',
       servings: '3',
       love: '0',
-      image: 'imagen id: 2',
+      image: '2',
       ingredients: [
         {
           ingredient: 'milk',
@@ -69,7 +68,7 @@ const App: () => React$Node = () => {
       description: 'Familiar food',
       servings: '3',
       love: '0',
-      image: 'imagen id: 3',
+      image: '3',
       ingredients: [
         {
           ingredient: 'refrigerated biscuit',
@@ -96,7 +95,7 @@ const App: () => React$Node = () => {
       description: '',
       servings: '3',
       love: '0',
-      image: 'imagen id: 4',
+      image: '4',
       ingredients: [
         {
           ingredient: 'all-purpose flour',
@@ -143,11 +142,12 @@ const App: () => React$Node = () => {
     return (
       <View style={styles.card}>
         {data.map( r =>
-        <View key={r.id}>
+        <View style={styles.containerCard} key={r.id}>
+          <Image  style={styles.foodCard} source={require(`./images/1.jpg`)} />
           <Text style={styles.sectionTitle}>{r.image}</Text>
           <Text style={styles.sectionTitle}>{r.name}</Text>
           <Text style={styles.sectionTitle}>{r.description}</Text>
-         </View >
+         </View>
         )}    
       </View>
     );
@@ -179,7 +179,7 @@ const App: () => React$Node = () => {
                 placeholder="What do you want to eat?"
                 value="da"
               />
-              <Text style={styles.sectionTitle}>TRENDING!</Text>
+              <Text style={[styles.trending]}>TRENDING!</Text>
               <ElementFood />
               <Button
                 onPress={showIngredients}
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   body: {
-    backgroundColor: Colors.black,
+    backgroundColor: '#2c2c2c',
   },
   sectionContainer: {
     marginTop: 25,
@@ -217,12 +217,16 @@ const styles = StyleSheet.create({
   },
   card: {
     height: 250,
-    width:  500
+    width:  100,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 12,
     fontWeight: '600',
     color: Colors.white,
+    textAlign: "justify"
   },
   sectionDescription: {
     marginTop: 8,
@@ -241,6 +245,19 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
+  trending: {
+    fontSize: 24,
+    color: 'deeppink',
+    fontWeight: '600',
+    marginBottom: 10,
+    marginTop: 10,
+  },
+  foodCard: {
+    width: 100, height: 100
+  },
+  containerCard: {
+    marginRight: 20,
+  }
 });
 
 export default App;
