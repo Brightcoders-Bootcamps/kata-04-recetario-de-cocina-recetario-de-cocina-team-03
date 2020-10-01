@@ -16,7 +16,9 @@ import {
   StatusBar,
   Button,
   Image, 
-  TextInput
+  TextInput,
+  FlatList,
+  Dimensions,
 } from 'react-native';
 
 import {
@@ -138,6 +140,30 @@ const App: () => React$Node = () => {
     console.log(data);
   }
 
+  
+  const numColumns = 3;
+  const renderItem = ({ r }) => {
+    return (
+      <View style={styles.containerCard} key={r.id}>
+          <Image  style={styles.foodCard} source={require(`./images/1.jpg`)} />
+          <Text style={styles.sectionTitle}>{r.image}</Text>
+          <Text style={styles.sectionTitle}>{r.name}</Text>
+          <Text style={styles.sectionTitle}>{r.description}</Text>
+      </View>
+    );
+  };
+
+  // const ListFood = (prop) => {
+  //   return (
+  //     <FlatList
+  //         data={data}
+  //         style={styles.card}
+  //         renderItem={renderItem}
+  //         numColumns={3}
+  //     />
+  //   );
+  // }
+  
   const ElementFood = (props) => {
     return (
       <View style={styles.card}>
@@ -148,12 +174,12 @@ const App: () => React$Node = () => {
           <Text style={styles.sectionTitle}>{r.name}</Text>
           <Text style={styles.sectionTitle}>{r.description}</Text>
          </View>
-        )}    
+        )} 
       </View>
     );
   }
-
-
+  
+  
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -181,6 +207,8 @@ const App: () => React$Node = () => {
               />
               <Text style={[styles.trending]}>TRENDING!</Text>
               <ElementFood />
+              {/* <ListFood /> */}
+              <Text style={[styles.recent]}>RECENT!</Text>
               <Button
                 onPress={showIngredients}
                 title="Learn More"
@@ -252,11 +280,20 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
   },
+  recent: {
+    fontSize: 24,
+    color: 'deeppink',
+    fontWeight: '600',
+    marginBottom: 10,
+    marginTop: 15,
+  },
   foodCard: {
     width: 100, height: 100
   },
   containerCard: {
     marginRight: 20,
+    aspectRatio: 1,
+    flex: 1 / numColumns
   }
 });
 
