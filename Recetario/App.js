@@ -38,7 +38,7 @@ const App: () => React$Node = () => {
       description: 'Fast food',
       servings: '3',
       love: '0',
-      image: '1',
+      image: './images/1.jpg',
       ingredients: [
         {
           ingredient: 'milk',
@@ -56,7 +56,7 @@ const App: () => React$Node = () => {
       description: 'comida rapida',
       servings: '3',
       love: '0',
-      image: '2',
+      image: './images/2.jpg',
       ingredients: [
         {
           ingredient: 'milk',
@@ -70,7 +70,7 @@ const App: () => React$Node = () => {
       description: 'Familiar food',
       servings: '3',
       love: '0',
-      image: '3',
+      image: './images/3.jpg',
       ingredients: [
         {
           ingredient: 'refrigerated biscuit',
@@ -97,7 +97,7 @@ const App: () => React$Node = () => {
       description: '',
       servings: '3',
       love: '0',
-      image: '4',
+      image: './images/3.jpg',
       ingredients: [
         {
           ingredient: 'all-purpose flour',
@@ -153,24 +153,23 @@ const App: () => React$Node = () => {
     );
   };
 
-  // const ListFood = (prop) => {
-  //   return (
-  //     <FlatList
-  //         data={data}
-  //         style={styles.card}
-  //         renderItem={renderItem}
-  //         numColumns={3}
-  //     />
-  //   );
-  // }
+  const ListFood = (prop) => {
+    return (
+      <FlatList
+          data={data}
+          style={styles.card}
+          renderItem={this.renderItem}
+          numColumns={3}
+      />
+    );
+  }
   
   const ElementFood = (props) => {
     return (
       <View style={styles.card}>
         {data.map( r =>
         <View style={styles.containerCard} key={r.id}>
-          <Image  style={styles.foodCard} source={require(`./images/1.jpg`)} />
-          <Text style={styles.sectionTitle}>{r.image}</Text>
+          <Image  style={styles.foodCard} source={require('./images/1.jpg')} />
           <Text style={styles.sectionTitle}>{r.name}</Text>
           <Text style={styles.sectionTitle}>{r.description}</Text>
          </View>
@@ -187,27 +186,20 @@ const App: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
           <View style={styles.body}>
-            <View style={styles.sectionContainer}>         
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-
+            <View style={styles.sectionContainer}>
               <TextInput
                 style={styles.textInput}
                 placeholder="What do you want to eat?"
-                value="da"
               />
               <Text style={[styles.trending]}>TRENDING!</Text>
-              <ElementFood />
-              {/* <ListFood /> */}
+              {/* <ElementFood /> */}
+              <ListFood />
               <Text style={[styles.recent]}>RECENT!</Text>
               <Button
                 onPress={showIngredients}
@@ -248,7 +240,7 @@ const styles = StyleSheet.create({
     width:  100,
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
   },
   sectionTitle: {
     fontSize: 12,
@@ -293,7 +285,7 @@ const styles = StyleSheet.create({
   containerCard: {
     marginRight: 20,
     aspectRatio: 1,
-    flex: 1 / numColumns
+    flex: 1 / 3
   }
 });
 
