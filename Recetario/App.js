@@ -294,8 +294,6 @@ const styles = StyleSheet.create({
     color: 'deeppink',
     fontWeight: '600',
     marginBottom: 10,
-    borderRadius: 5,
-    marginBottom: 8,
   },
   containerCard: {
     marginRight: 20,
