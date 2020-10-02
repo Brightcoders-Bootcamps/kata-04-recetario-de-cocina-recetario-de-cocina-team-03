@@ -179,10 +179,10 @@ const App: () => React$Node = () => {
   
   const RecentFood = (props) => {
     return(
-      <View style={styles.containerCard} >
-        <Image  style={styles.foodCard} source={props.item.name} />
-        <Text style={styles.sectionTitle}>{props.item.name}</Text>
-        <Text style={styles.sectionTitle}>{r.description}</Text>
+      <View style={styles.containerCardRecent} >
+        <Image  style={styles.foodCardRecent} source={require('./images/1.jpg')} />
+        <Text style={styles.sectionTitle}>{"title"}</Text>
+        <Text style={styles.sectionTitle}>{"description"} </Text>
       </View> 
     );    
   }
@@ -209,12 +209,7 @@ const App: () => React$Node = () => {
               {/* <ElementFood /> */}                         
               <ListFood />
               <Text style={[styles.recent]}>RECENT!</Text>
-              <Button
-                onPress={showIngredients}
-                title="Learn More"
-                color="#841584"
-                accessibilityLabel="Learn more about this purple button"
-              />
+              <RecentFood />
             </View>
           </View>
         </ScrollView>
@@ -227,7 +222,7 @@ const styles = StyleSheet.create({
   containerTest: {
     flex: 1,
     marginVertical: 20,
-    marginBottom: -230,
+    marginBottom: -300,
   },
   scrollView: {
     backgroundColor: Colors.lighter,
@@ -300,6 +295,15 @@ const styles = StyleSheet.create({
     marginBottom: 70,
     aspectRatio: 1,
     flex: 1
+  },
+  containerCardRecent:{
+    flex: 1
+  },
+  foodCardRecent: {
+    height: 170,
+    width:  130,
+    flex: 1,
+    // flexDirection: 'row',
   }
 });
 
