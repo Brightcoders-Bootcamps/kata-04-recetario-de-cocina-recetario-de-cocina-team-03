@@ -36,20 +36,20 @@ const App: () => React$Node = () => {
     console.log(data);
   }
 
-  const renderItem = ({ item }) => {
-    console.log(item.id);
-    let img = "./images/";
-    let images = img.concat("",item.image);
-    console.log(images);
-    return (
-      <View style={styles.containerCard} key={item.id}>
-          {/* DUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */}
-          <Image style={styles.foodCard} source={require('./images/1.jpg')} />
-          <Text style={styles.sectionTitle}>{item.name}</Text>
-          <Text style={styles.sectionTitle}>{item.description}</Text>
-      </View>
-    );
-  };
+  // const renderItem = ({ item }) => {
+  //   console.log(item.id);
+  //   let img = "./images/";
+  //   let images = img.concat("",item.image);
+  //   console.log(images);
+  //   return (
+  //     <View style={styles.containerCard} key={item.id}>
+  //         {/* DUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */}
+  //         <Image style={styles.foodCard} source={require('./images/1.jpg')} />
+  //         <Text style={styles.sectionTitle}>{item.name}</Text>
+  //         <Text style={styles.sectionTitle}>{item.description}</Text>
+  //     </View>
+  //   );
+  // };
   
   const ListFood = (prop) => {
     return (
@@ -64,7 +64,7 @@ const App: () => React$Node = () => {
   
   const ElementFood = (props) => {
     return (
-      <View style={styles.card}>
+      <ScrollView horizontal={true}>
         {data.map( r =>
         <View style={styles.containerCard} key={r.id}>
           <Image  style={styles.foodCard} source={require('./images/1.jpg')} />
@@ -72,18 +72,43 @@ const App: () => React$Node = () => {
           <Text style={styles.sectionTitle}>{r.description}</Text>
          </View>
         )} 
-      </View>
+      </ScrollView>
     );
   }
-  
+
   const RecentFood = (props) => {
     return(
-      <View style={styles.containerCardRecent} >
-        <Image  style={styles.foodCardRecent} source={require('./images/1.jpg')} />
-        <Text style={styles.sectionTitle}>{"title"}</Text>
-        <Text style={styles.sectionTitle}>{"description"} </Text>
-      </View> 
+      <ScrollView horizontal={true}>
+        {data.map( r =>
+          { if (r.status){
+            <View style={styles.containerCard} key={r.id}>
+              <Image style={styles.foodCard} source={require('./images/1.jpg')} />
+              <Text style={styles.sectionTitle}>{r.name}</Text>
+              <Text style={styles.sectionTitle}>{r.description}</Text>
+            </View>
+          }}
+        )} 
+      </ScrollView>
     );    
+  }
+
+  function RecentFoods(props) {
+    let datos = '';
+    datos+='<ScrollView horizontal={true}></ScrollView>';
+    for(let datas of data) {
+      console.log(datas.id);
+      if(datas.status){
+        datos+='<View style={styles.containerCard} key={'+datas.id+'}>'+
+                  '<Image style={styles.foodCard} source={require("./images/1.jpg")} />'+
+                  '<Text style={styles.sectionTitle}>{'+datas.name+'}</Text>'+
+                  '<Text style={styles.sectionTitle}>{'+datas.description+'}</Text>'+
+                '</View>';
+        console.log('------------------');
+        console.log('true');
+      }
+    datos+= '</ScrollView>';
+    return(datos);
+  }
   }
   
   return (
@@ -105,10 +130,11 @@ const App: () => React$Node = () => {
                 placeholder="What do you want to eat?"
               />
               <Text style={[styles.trending]}>TRENDING!</Text>
-              {/* <ElementFood /> */}                         
-              <ListFood />
+              <ElementFood />                         
+              {/* <ListFood /> */}
               <Text style={[styles.recent]}>RECENT!</Text>
               <RecentFood />
+              {/* <RecentFoods /> */}
             </View>
           </View>
         </ScrollView>

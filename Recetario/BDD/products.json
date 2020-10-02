@@ -1,10 +1,11 @@
 [
-  {
+  { 
     "id": "1",
     "name": "Peperonni Pizza Pockets",
     "description": "Fast food",
     "servings": "3",
     "love": "0",
+    "status": true,
     "image": "1.jpg",
     "ingredients": [
       {
@@ -23,6 +24,7 @@
     "description": "comida rapida",
     "servings": "3",
     "love": "0",
+    "status": true,
     "image": "2.jpg",
     "ingredients": [
       {
@@ -37,6 +39,7 @@
     "description": "Familiar food",
     "servings": "3",
     "love": "0",
+    "status": false,
     "image": "3.jpg",
     "ingredients": [
       {
@@ -63,6 +66,7 @@
     "description": "",
     "servings": "3",
     "love": "0",
+    "status":false,
     "image": "4.jpg",
     "ingredients": [
       {
