@@ -38,7 +38,7 @@ const App: () => React$Node = () => {
       description: 'Fast food',
       servings: '3',
       love: '0',
-      image: './images/1.jpg',
+      image: require('./images/1.jpg'),
       ingredients: [
         {
           ingredient: 'milk',
@@ -56,7 +56,7 @@ const App: () => React$Node = () => {
       description: 'comida rapida',
       servings: '3',
       love: '0',
-      image: './images/2.jpg',
+      image: require('./images/2.jpg'),
       ingredients: [
         {
           ingredient: 'milk',
@@ -70,7 +70,7 @@ const App: () => React$Node = () => {
       description: 'Familiar food',
       servings: '3',
       love: '0',
-      image: './images/3.jpg',
+      image: require('./images/3.jpg'),
       ingredients: [
         {
           ingredient: 'refrigerated biscuit',
@@ -97,7 +97,7 @@ const App: () => React$Node = () => {
       description: '',
       servings: '3',
       love: '0',
-      image: './images/3.jpg',
+      image: require('./images/4.jpg'),
       ingredients: [
         {
           ingredient: 'all-purpose flour',
@@ -140,14 +140,14 @@ const App: () => React$Node = () => {
     console.log(data);
   }
 
-  const renderItem = ({ r }) => {
+  const renderItem = ({ item }) => {
+    console.log(item.id)
+    let img = "./images/"+item.id+".jpg"
     return (
-      <View style={styles.containerCard} key={r.id}>
-
-          <Image style={styles.foodCard} source={require(`./images/1.jpg`)} />
-          <Text style={styles.sectionTitle}>{r.image}</Text>
-          <Text style={styles.sectionTitle}>{r.name}</Text>
-          <Text style={styles.sectionTitle}>{r.description}</Text>
+      <View style={styles.containerCard} key={item.id}>
+          <Image style={styles.foodCard} source={item.image} />
+          <Text style={styles.sectionTitle}>{item.name}</Text>
+          <Text style={styles.sectionTitle}>{item.description}</Text>
       </View>
     );
   };
@@ -155,10 +155,10 @@ const App: () => React$Node = () => {
   const ListFood = (prop) => {
     return (
       <FlatList
-      data={data}
-      style={styles.card}
-      renderItem={this.renderItem}
-      numColumns={3}
+        data={data}
+        style={styles.containerTest}
+        renderItem={renderItem}
+        numColumns={3}
       />
     );
   }
@@ -177,6 +177,15 @@ const App: () => React$Node = () => {
     );
   }
   
+  const RecentFood = (props) => {
+    return(
+      <View style={styles.containerCard} >
+        <Image  style={styles.foodCard} source={props.item.name} />
+        <Text style={styles.sectionTitle}>{props.item.name}</Text>
+        <Text style={styles.sectionTitle}>{r.description}</Text>
+      </View> 
+    );    
+  }
   
   return (
     <>
@@ -197,7 +206,8 @@ const App: () => React$Node = () => {
                 placeholder="What do you want to eat?"
               />
               <Text style={[styles.trending]}>TRENDING!</Text>
-              {/* <ElementFood /> */}
+              {/* <ElementFood /> */}                         
+              <ListFood />
               <Text style={[styles.recent]}>RECENT!</Text>
               <Button
                 onPress={showIngredients}
@@ -208,15 +218,17 @@ const App: () => React$Node = () => {
             </View>
           </View>
         </ScrollView>
-        <View>
-          <ListFood />
-        </View>
       </SafeAreaView>
     </>
   );
 };
 
 const styles = StyleSheet.create({
+  containerTest: {
+    flex: 1,
+    marginVertical: 20,
+    marginBottom: -230,
+  },
   scrollView: {
     backgroundColor: Colors.lighter,
   },
@@ -242,6 +254,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     // justifyContent: 'space-between',
+  },
+  foodCard : {
+    height: 100,
+    width:  100,
   },
   sectionTitle: {
     fontSize: 12,
@@ -278,13 +294,12 @@ const styles = StyleSheet.create({
     color: 'deeppink',
     fontWeight: '600',
     marginBottom: 10,
-    marginTop: 15,
-  },
-  foodCard: {
-    width: 100, height: 100
+    borderRadius: 5,
+    marginBottom: 8,
   },
   containerCard: {
     marginRight: 20,
+    marginBottom: 70,
     aspectRatio: 1,
     flex: 1
   }
