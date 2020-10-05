@@ -40,12 +40,20 @@ const App: () => React$Node = () => {
           <Image  style={styles.foodCard} source={r.image} />
           <Text style={styles.sectionTitle}>{r.name}</Text>
           <Text style={styles.sectionTitle}>{r.description}</Text>
+          <Button
+            onPress={changeStatus}
+            title="Hello"
+          />
          </View>
         )} 
       </ScrollView>
     );
-    
   }
+
+  function changeStatus(){
+    console.log("Entro a cambio de estado");
+  }
+
   const RecentFood = (props) => {
     return(
       <ScrollView horizontal={true}>
