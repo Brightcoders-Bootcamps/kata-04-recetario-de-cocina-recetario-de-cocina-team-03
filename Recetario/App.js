@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import data from './BDD/products.json';
+import data from './BDD/products';
 import {
   SafeAreaView,
   StyleSheet,
@@ -31,43 +31,13 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 const App: () => React$Node = () => {
-
-  function showIngredients() {
-    console.log(data);
-  }
-
-  // const renderItem = ({ item }) => {
-  //   console.log(item.id);
-  //   let img = "./images/";
-  //   let images = img.concat("",item.image);
-  //   console.log(images);
-  //   return (
-  //     <View style={styles.containerCard} key={item.id}>
-  //         {/* DUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA */}
-  //         <Image style={styles.foodCard} source={require('./images/1.jpg')} />
-  //         <Text style={styles.sectionTitle}>{item.name}</Text>
-  //         <Text style={styles.sectionTitle}>{item.description}</Text>
-  //     </View>
-  //   );
-  // };
-  
-  const ListFood = (prop) => {
-    return (
-      <FlatList
-        data={data}
-        style={styles.containerTest}
-        renderItem={renderItem}
-        numColumns={3}
-      />
-    );
-  }
   
   const ElementFood = (props) => {
     return (
       <ScrollView horizontal={true}>
         {data.map( r =>
         <View style={styles.containerCard} key={r.id}>
-          <Image  style={styles.foodCard} source={require('./images/1.jpg')} />
+          <Image  style={styles.foodCard} source={r.image} />
           <Text style={styles.sectionTitle}>{r.name}</Text>
           <Text style={styles.sectionTitle}>{r.description}</Text>
          </View>
@@ -83,7 +53,7 @@ const App: () => React$Node = () => {
           { if (r.status){
             return (
               <View style={styles.containerCard} key={r.id}>
-                <Image style={styles.foodCard} source={require('./images/1.jpg')} />
+                <Image style={styles.foodCard} source={r.image} />
                 <Text style={styles.sectionTitle}>{r.name}</Text>
                 <Text style={styles.sectionTitle}>{r.description}</Text>
               </View>
@@ -91,10 +61,8 @@ const App: () => React$Node = () => {
           }}
         )} 
       </ScrollView>
-    );    
-  }
-
-
+    );     
+  } 
   
   return (
     <>
@@ -157,7 +125,6 @@ const styles = StyleSheet.create({
     width:  100,
     flex: 1,
     flexDirection: 'row',
-    // justifyContent: 'space-between',
   },
   foodCard : {
     height: 100,
@@ -212,7 +179,6 @@ const styles = StyleSheet.create({
     height: 170,
     width:  130,
     flex: 1,
-    // flexDirection: 'row',
   }
 });
 
