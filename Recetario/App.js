@@ -74,42 +74,27 @@ const App: () => React$Node = () => {
         )} 
       </ScrollView>
     );
+    
   }
-
   const RecentFood = (props) => {
     return(
       <ScrollView horizontal={true}>
         {data.map( r =>
           { if (r.status){
-            <View style={styles.containerCard} key={r.id}>
-              <Image style={styles.foodCard} source={require('./images/1.jpg')} />
-              <Text style={styles.sectionTitle}>{r.name}</Text>
-              <Text style={styles.sectionTitle}>{r.description}</Text>
-            </View>
+            return (
+              <View style={styles.containerCard} key={r.id}>
+                <Image style={styles.foodCard} source={require('./images/1.jpg')} />
+                <Text style={styles.sectionTitle}>{r.name}</Text>
+                <Text style={styles.sectionTitle}>{r.description}</Text>
+              </View>
+            )
           }}
         )} 
       </ScrollView>
     );    
   }
 
-  function RecentFoods(props) {
-    let datos = '';
-    datos+='<ScrollView horizontal={true}></ScrollView>';
-    for(let datas of data) {
-      console.log(datas.id);
-      if(datas.status){
-        datos+='<View style={styles.containerCard} key={'+datas.id+'}>'+
-                  '<Image style={styles.foodCard} source={require("./images/1.jpg")} />'+
-                  '<Text style={styles.sectionTitle}>{'+datas.name+'}</Text>'+
-                  '<Text style={styles.sectionTitle}>{'+datas.description+'}</Text>'+
-                '</View>';
-        console.log('------------------');
-        console.log('true');
-      }
-    datos+= '</ScrollView>';
-    return(datos);
-  }
-  }
+
   
   return (
     <>
@@ -134,7 +119,6 @@ const App: () => React$Node = () => {
               {/* <ListFood /> */}
               <Text style={[styles.recent]}>RECENT!</Text>
               <RecentFood />
-              {/* <RecentFoods /> */}
             </View>
           </View>
         </ScrollView>
