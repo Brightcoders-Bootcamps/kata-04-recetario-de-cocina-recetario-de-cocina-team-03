@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+// import data from './BDD/products';
 import {
   SafeAreaView,
   StyleSheet,
@@ -29,20 +30,43 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const DetailFood: () => React$Node = () => {
-  
+const DetailFood: (  ) => React$Node = () => {
+
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <Text>Cambio de Screen</Text>
+      <View style={styles.viewDetail}>
+        <Image style={styles.trendingFood} source= {require('../images/1.jpg')} />
+        <Text style={styles.textDetail}>Trend</Text>
+        <Text style={styles.textDetail}>Pepperoni Pizza</Text>
+      </View>      
       </SafeAreaView>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-
+  trendingFood: {
+    backgroundColor: '#2c2c2c',
+    opacity: .4,
+  },
+  viewDetail: {
+    height : 350,
+    width : Dimensions.get('window').width,
+    position: 'absolute', 
+    top: 0, 
+    left: 0, 
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  textDetail: {
+    top: -50,
+    textAlign: "left",
+  }
 });
 
 export default DetailFood;

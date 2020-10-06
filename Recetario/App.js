@@ -23,8 +23,9 @@ import {
   Button,
   Image, 
   TextInput,
-  FlatList,
+  Pressable,
   Dimensions,
+
 } from 'react-native';
 
 import {
@@ -47,7 +48,7 @@ const App: () => React$Node = () => {
           component={HomeScreen}
           options={{ title: 'Welcome' }}
         />
-        <Stack.Screen name="DetailFood" component={ProfileScreen} />
+        <Stack.Screen name="DetailFood" component={DetailFood} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -206,11 +207,6 @@ const HomeScreen = ({ navigation }) => {
                   placeholder="What do you want to eat?"
                 />
                 <Text style={[styles.trending]}>TRENDING!</Text>
-                <Stack.Screen
-                  name="Home"
-                  component={HomeScreen}
-                  options={{ title: 'Welcome' }}
-                />
                 <ElementFood />                         
                 {/* <ListFood /> */}
                 <Text style={[styles.recent]}>RECENT!</Text>
@@ -229,7 +225,4 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-const ProfileScreen = () => {
-  return <Text>This is Jane's profile</Text>;
-};
 
