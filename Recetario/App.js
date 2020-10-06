@@ -158,7 +158,7 @@ const HomeScreen = ({ navigation }) => {
           <Button
             title="Go to Jane's profile"
             onPress={() =>
-              navigation.navigate('DetailFood', { name: 'Jane' })
+              navigation.navigate('DetailFood', { food: r })
             }
           />  
          </View>

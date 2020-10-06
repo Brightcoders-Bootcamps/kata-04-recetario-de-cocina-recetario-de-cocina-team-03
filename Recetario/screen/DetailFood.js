@@ -30,17 +30,22 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const DetailFood: (  ) => React$Node = () => {
+const DetailFood= ({ route, navigation }) => {
 
-
+  const {food} = route.params;
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
       <View style={styles.viewDetail}>
-        <Image style={styles.trendingFood} source= {require('../images/1.jpg')} />
-        <Text style={styles.textDetail}>Trend</Text>
-        <Text style={styles.textDetail}>Pepperoni Pizza</Text>
+        <Image style={styles.trendingFood} source= {food.image} />
+        <Text style={styles.textDetail}>{food.name}</Text>
+        <Text style={styles.textDetail}>{food.description}</Text>        
+        {food.ingredients.map( r =>
+        <View style={styles.containerCard} key={r.key}>
+          <Text style={styles.sectionTitle}>{r.ingredient} cantidad: {r.quantity}</Text>          
+         </View>
+        )} 
       </View>      
       </SafeAreaView>
     </>
