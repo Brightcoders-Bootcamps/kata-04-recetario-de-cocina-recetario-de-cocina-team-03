@@ -54,10 +54,10 @@ const DetailFood= ({ route }) => {
 const styles = StyleSheet.create({
   trendingFood: {
     backgroundColor: '#2c2c2c',
+    // fontSize: 45
+    height: 300,
     opacity: .4,
     width: Dimensions.get('window').width,
-    height: 300,
-    fontSize: 45,
   },
   viewDetail: {
     position: 'absolute', 
