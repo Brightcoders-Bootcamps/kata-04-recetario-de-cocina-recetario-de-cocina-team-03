@@ -158,17 +158,13 @@ const HomeScreen = ({ navigation }) => {
           <Button
             title="Go to Jane's profile"
             onPress={() =>
-              navigation.navigate('DetailFood', { food: r })
+            navigation.navigate('DetailFood', { food: r, title: 'Trendind' })
             }
-          />  
+          />
          </View>
         )} 
       </ScrollView>
     );
-  }
-
-  function changeStatus(){
-    console.log("Entro a cambio de estado");
   }
 
   const RecentFood = (props) => {
@@ -211,12 +207,6 @@ const HomeScreen = ({ navigation }) => {
                 {/* <ListFood /> */}
                 <Text style={[styles.recent]}>RECENT!</Text>
                 <RecentFood />
-                <Button
-                  title="Next Screen"
-                  onPress={() =>
-                    navigation.navigate(DetailFood)
-                  }
-                />
               </View>
             </View>
           </ScrollView>

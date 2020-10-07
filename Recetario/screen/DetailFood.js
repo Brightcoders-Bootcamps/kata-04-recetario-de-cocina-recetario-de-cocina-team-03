@@ -30,47 +30,46 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const DetailFood= ({ route, navigation }) => {
+const DetailFood= ({ route }) => {
 
-  const {food} = route.params;
+  const {food, title} = route.params;
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
       <View style={styles.viewDetail}>
         <Image style={styles.trendingFood} source= {food.image} />
+        <Text style={styles.textDetail}>{title}</Text>
         <Text style={styles.textDetail}>{food.name}</Text>
         <Text style={styles.textDetail}>{food.description}</Text>        
         {food.ingredients.map( r =>
-        <View style={styles.containerCard} key={r.key}>
           <Text style={styles.sectionTitle}>{r.ingredient} cantidad: {r.quantity}</Text>          
-         </View>
         )} 
       </View>      
       </SafeAreaView>
     </>
-  );
-};
+  ); };
 
 const styles = StyleSheet.create({
   trendingFood: {
     backgroundColor: '#2c2c2c',
     opacity: .4,
+    width: Dimensions.get('window').width,
+    height: 300,
+    fontSize: 45,
   },
   viewDetail: {
-    height : 350,
-    width : Dimensions.get('window').width,
     position: 'absolute', 
     top: 0, 
+    bottom: 0, 
     left: 0, 
-    right: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center'
+    right: 0, 
   },
   textDetail: {
     top: -50,
     textAlign: "left",
+    color: 'white',
+    
   }
 });
 
