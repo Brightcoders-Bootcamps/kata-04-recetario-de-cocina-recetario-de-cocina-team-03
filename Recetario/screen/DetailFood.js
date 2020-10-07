@@ -42,8 +42,8 @@ const DetailFood= ({ route }) => {
         <Text style={styles.textDetail}>{title}</Text>
         <Text style={styles.textDetail}>{food.name}</Text>
         <Text style={styles.textDetail}>{food.description}</Text>        
-        {food.ingredients.map( r =>
-          <Text style={styles.sectionTitle}>{r.ingredient} cantidad: {r.quantity}</Text>          
+        {food.ingredients.map( (r, index) =>
+          <Text key={index} style={styles.sectionTitle}>{r.ingredient} cantidad: {r.quantity}</Text>          
         )} 
       </View>      
       </SafeAreaView>

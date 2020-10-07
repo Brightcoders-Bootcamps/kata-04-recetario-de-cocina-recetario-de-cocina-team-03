@@ -13,6 +13,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import data from './BDD/products';
 import DetailFood from './screen/DetailFood';
+// import Icon from 'react-native-vector-icons/Ionicons';
 import {
   SafeAreaView,
   StyleSheet,
@@ -25,7 +26,6 @@ import {
   TextInput,
   Pressable,
   Dimensions,
-
 } from 'react-native';
 
 import {
@@ -73,7 +73,12 @@ const styles = StyleSheet.create({
   textInput: {
     height: 40, 
     borderColor: 'white',
-    borderWidth: 1
+    borderWidth: 1,
+    borderRadius: 7,
+    backgroundColor: '#343435',
+    color: '#fff',
+    paddingLeft: 8,
+    width: '90%'
   },
   card: {
     height: 250,
@@ -142,6 +147,12 @@ const styles = StyleSheet.create({
   containerCardRecent:{
     height: 300,
   },
+  containerInput: {
+    flexDirection: 'row'
+  },
+  iconsInput:{
+    color: '#fff'
+  }
 });
 
 export default App;
@@ -158,7 +169,7 @@ const HomeScreen = ({ navigation }) => {
           <Button
             title="Go to Jane's profile"
             onPress={() =>
-            navigation.navigate('DetailFood', { food: r, title: 'Trendind' })
+            navigation.navigate('DetailFood', { food: r, title: 'Trending' })
             }
           />
          </View>
@@ -177,6 +188,12 @@ const HomeScreen = ({ navigation }) => {
                 <Image style={styles.foodCardRecent} source={r.image} />
                 <Text style={styles.sectionTitleRecent}>{r.name}</Text>
                 <Text style={styles.sectionTitleRecent}>{r.description}</Text>
+                <Button
+                  title="Go to Jane's profile"
+                  onPress={() =>
+                  navigation.navigate('DetailFood', { food: r, title: 'Recent' })
+                  }
+                />
               </View>
             )
           }}
@@ -198,10 +215,19 @@ const HomeScreen = ({ navigation }) => {
             )}
             <View style={styles.body}>
               <View style={styles.sectionContainer}>
-                <TextInput
-                  style={styles.textInput}
-                  placeholder="What do you want to eat?"
-                />
+                <View style={styles.containerInput}>
+                  <Text style={styles.iconsInput}>L</Text>
+                  <TextInput
+                    style={styles.textInput}
+                    placeholder="What do you want to eat???"
+                    placeholderTextColor="#fff" 
+                  />                  
+                  {/* <Icon
+                    name='ios-person'
+                    color='#000'
+                    size={14}
+                  /> */}
+                </View>                
                 <Text style={[styles.trending]}>TRENDING!</Text>
                 <ElementFood />                         
                 {/* <ListFood /> */}
