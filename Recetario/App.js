@@ -12,6 +12,7 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import data from './BDD/products';
+import recentProducts from './BDD/recent';
 import DetailFood from './screen/DetailFood';
 // import Icon from 'react-native-vector-icons/Ionicons';
 import {
@@ -169,13 +170,23 @@ const HomeScreen = ({ navigation }) => {
           <Button
             title="Go to Jane's profile"
             onPress={() =>
-            navigation.navigate('DetailFood', { food: r, title: 'Trending' })
+              { updateProducts(r) },
+              navigation.navigate('DetailFood', { food: r, title: 'Trending' })
             }
           />
          </View>
         )} 
       </ScrollView>
     );
+  }
+
+  function updateProducts(r){
+    if(recentProducts.length === 3){
+      recentProducts.pop();
+      recentProducts.unshift(r);
+    }else{
+      recentProducts.unshift(r);
+    }
   }
 
   const RecentFood = (props) => {

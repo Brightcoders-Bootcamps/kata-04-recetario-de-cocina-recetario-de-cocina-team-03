@@ -33,6 +33,7 @@ import {
 const DetailFood= ({ route }) => {
 
   const {food, title} = route.params;
+  
   return (
     <>
       <StatusBar barStyle="dark-content" />
