@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+
 // import data from './BDD/products';
 import {
   SafeAreaView,
@@ -36,6 +37,15 @@ const DetailFood= ({ route }) => {
   
   return (
     <>
+        <View style={styles.topBar}>
+          <View style={styles.leftButton}> 
+            <View style={styles.backButton}><Button title="X"/></View>
+          </View>
+          <View style={styles.rightButtons}>
+            <View style={styles.shareButton}><Button title="S"/></View>
+            <View style={styles.likeButton}><Button title="L"/></View>
+          </View>
+        </View>
       <View style={styles.container}>
         <StatusBar barStyle="dark-content" />
         <SafeAreaView>
@@ -63,10 +73,38 @@ const DetailFood= ({ route }) => {
       backgroundColor: '#282828',
       height: Dimensions.get('window').height,
     },
+    topBar: {
+      backgroundColor: 'transparent',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginBottom: -50,
+      zIndex: 5,
+    },
+    leftButton:{
+      
+    },
+    rightButtons:{
+      flexDirection: 'row-reverse',
+    },
+    backButton: {
+      height: 50,
+      position: 'relative',
+      width: 50,
+    },
+    shareButton: {     
+      height: 50,
+      width: 50,
+    },
+    likeButton: {
+      height: 50,
+      width: 50,
+
+    },
     trendingFood: {
       opacity: .4,
       width: Dimensions.get('window').width,
       height: 300,
+      zIndex: 0,
     },
     viewDetail: {
       position: 'absolute', 

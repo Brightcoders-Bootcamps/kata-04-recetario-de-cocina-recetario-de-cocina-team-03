@@ -46,9 +46,16 @@ const App: () => React$Node = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: 'Welcome' }}
+          options={{
+            headerShown: false,
+            title: 'Recetario',
+        }} 
         />
-        <Stack.Screen name="DetailFood" component={DetailFood} />
+        <Stack.Screen name="DetailFood" 
+          options={{
+            headerShown: false,
+          }} 
+        component={DetailFood} />
       </Stack.Navigator>
     </NavigationContainer>
   );
