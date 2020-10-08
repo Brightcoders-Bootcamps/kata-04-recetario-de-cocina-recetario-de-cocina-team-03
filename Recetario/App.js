@@ -14,7 +14,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import data from './BDD/products';
 import recentProducts from './BDD/recent';
 import DetailFood from './screen/DetailFood';
-// import Icon from 'react-native-vector-icons/Ionicons';
 import {
   SafeAreaView,
   StyleSheet,
@@ -71,16 +70,6 @@ const styles = StyleSheet.create({
     marginTop: 25,
     paddingHorizontal: 24,
   },
-  textInput: {
-    height: 40, 
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 7,
-    backgroundColor: '#343435',
-    color: '#fff',
-    paddingLeft: 8,
-    width: '90%'
-  },
   card: {
     height: 250,
     width:  100,
@@ -89,8 +78,8 @@ const styles = StyleSheet.create({
   },
   foodCard : {
     height: 100,
-    width:  100,
-    borderRadius: 15,
+    width:  110,
+    borderRadius: 10,
   },
   foodCardRecent : {
     height: 200,
@@ -131,15 +120,17 @@ const styles = StyleSheet.create({
     color: 'deeppink',
     fontWeight: '600',
     marginBottom: 10,
-    marginTop: 10,
+    marginTop: 20,
   },
   recent: {
     fontSize: 24,
     color: 'deeppink',
     fontWeight: '600',
     marginBottom: 10,
+    marginTop: 30,
   },
   containerCard: {
+    width: 110,
     marginRight: 20,
     marginBottom: 40,
     aspectRatio: 1,
@@ -153,7 +144,37 @@ const styles = StyleSheet.create({
   },
   iconsInput:{
     color: '#fff'
-  }
+  },
+  searchImage: {
+    tintColor: '#fff',
+    height: 17,
+    width: 17,
+  },
+  searchView: {
+    justifyContent: 'center',
+    backgroundColor: '#343435',
+    paddingLeft: 10,
+    paddingRight: 10,
+    width: '10%',
+    borderTopLeftRadius: 8,
+    borderBottomLeftRadius: 8,
+  },  
+  recordView: {
+    justifyContent: 'center',
+    backgroundColor: '#343435',
+    paddingLeft: 10,
+    paddingRight: 10,
+    width: '10%',
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
+  },     
+  textInput: {
+    height: 40, 
+    backgroundColor: '#343435',
+    color: '#fff',
+    paddingLeft: 8,
+    width: '80%'
+  },
 });
 
 export default App;
@@ -163,17 +184,15 @@ const HomeScreen = ({ navigation }) => {
     return (
       <ScrollView horizontal={true}>
         {data.map( r =>
-        <View style={styles.containerCard} key={r.id}>
-          <Image  style={styles.foodCard} source={r.image} />
-          <Text style={styles.sectionTitle}>{r.name}</Text>
-          <Text style={styles.sectionTitle}>{r.description}</Text>
-          <Button
-            title="Go to Jane's profile"
-            onPress={() =>
-              // { updateProducts(r) },
-              navigation.navigate('DetailFood', { food: r, title: 'Trending' })
-            }
-          />
+        <View style={styles.containerCard} key={r.id}>             
+          <Pressable
+                onPress={() => {
+                  navigation.navigate('DetailFood', { food: r, title: 'Trending' })
+                }}>
+              <Image  style={styles.foodCard} source={r.image} />
+              <Text style={styles.sectionTitle}>{r.name}</Text>
+              <Text style={styles.sectionTitle}>{r.description}</Text>
+          </Pressable>          
          </View>
         )} 
       </ScrollView>
@@ -196,15 +215,14 @@ const HomeScreen = ({ navigation }) => {
           { if (r.status){
             return (
               <View style={styles.containerCardRecent} key={r.id}>
-                <Image style={styles.foodCardRecent} source={r.image} />
-                <Text style={styles.sectionTitleRecent}>{r.name}</Text>
-                <Text style={styles.sectionTitleRecent}>{r.description}</Text>
-                <Button
-                  title="Go to Jane's profile"
-                  onPress={() =>
+                <Pressable
+                onPress={() => {
                   navigation.navigate('DetailFood', { food: r, title: 'Recent' })
-                  }
-                />
+                }}>
+                  <Image style={styles.foodCardRecent} source={r.image} />
+                  <Text style={styles.sectionTitleRecent}>{r.name}</Text>
+                  <Text style={styles.sectionTitleRecent}>{r.description}</Text>            
+                </Pressable>              
               </View>
             )
           }}
@@ -227,22 +245,22 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.body}>
               <View style={styles.sectionContainer}>
                 <View style={styles.containerInput}>
-                  <Text style={styles.iconsInput}>L</Text>
+                  <View style={styles.searchView}>                       
+                    <Image  style={styles.searchImage} source={require('./images/search.png')} />
+                  </View>
                   <TextInput
                     style={styles.textInput}
-                    placeholder="What do you want to eat???"
+                    placeholder="What do you want to eat?"
                     placeholderTextColor="#fff" 
-                  />                  
-                  {/* <Icon
-                    name='ios-person'
-                    color='#000'
-                    size={14}
-                  /> */}
+                  />                     
+                  <View style={styles.recordView}>                       
+                    <Image  style={styles.searchImage} source={require('./images/recordvoice.png')} />
+                  </View> 
                 </View>                
-                <Text style={[styles.trending]}>TRENDING!</Text>
-                <ElementFood />                         
+                <Text style={[styles.trending]}>TRENDING</Text>
+                <ElementFood />                      
                 {/* <ListFood /> */}
-                <Text style={[styles.recent]}>RECENT!</Text>
+                <Text style={[styles.recent]}>RECENT</Text>
                 <RecentFood />
               </View>
             </View>
