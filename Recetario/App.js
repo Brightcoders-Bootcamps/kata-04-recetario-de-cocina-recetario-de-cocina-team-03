@@ -170,7 +170,7 @@ const HomeScreen = ({ navigation }) => {
           <Button
             title="Go to Jane's profile"
             onPress={() =>
-              { updateProducts(r) },
+              // { updateProducts(r) },
               navigation.navigate('DetailFood', { food: r, title: 'Trending' })
             }
           />
