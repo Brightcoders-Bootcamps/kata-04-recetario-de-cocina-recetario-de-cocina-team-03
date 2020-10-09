@@ -19,8 +19,6 @@ import {
   StatusBar,
   Button,
   Image, 
-  TextInput,
-  FlatList,
   Dimensions,
   Pressable,
 } from 'react-native';
@@ -33,7 +31,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const DetailFood= ({ route }) => {
+const DetailFood= ({ route, navigation }) => {
 
   const {food, title} = route.params;
 
@@ -61,14 +59,14 @@ const DetailFood= ({ route }) => {
             </View>
           </View>
           <View style={styles.rightButtons}>
-            <View style={styles.shareButton}>
+            <View style={styles.likeButton}>
             <Pressable
               onPress={changeLike}>
-              <Image style={styles.icons} source={require('../images/like.png')} />
+              <Image style={styles.iconLike} source={require('../images/like.png')} />
               </Pressable>
             </View>
-            <View style={styles.likeButton}>
-              <Image style={styles.icons} source={require('../images/share.png')} />
+            <View style={styles.shareButton}>
+              <Image style={styles.iconShare} source={require('../images/share.png')} />
             </View>
           </View>
         </View>
@@ -88,7 +86,7 @@ const DetailFood= ({ route }) => {
                   <Text style={styles.ingredients2}> {r.quantity}</Text>
                 </View>
               )}              
-            </ScrollView>
+        </ScrollView>
         </SafeAreaView>
       </View>
     </>
@@ -110,25 +108,38 @@ const DetailFood= ({ route }) => {
       
     },
     rightButtons:{
-      flexDirection: 'row-reverse',
+      flexDirection: 'row-reverse',     
     },
     backButton: {
+      paddingLeft: 20,
+      paddingTop: 20,
       height: 50,
       position: 'relative',
       width: 50,
     },
     shareButton: {     
+      paddingTop: 20,
       height: 50,
       width: 50,
     },
     likeButton: {
       height: 50,
       width: 50,
-
+      paddingTop:20
     },
     icons: {
       height: 30,
       width: 30,
+      tintColor: '#fff',
+    },
+    iconLike: {
+      height: 25,
+      width: 25,
+      tintColor: '#fff',
+    },
+    iconShare: {
+      height: 25,
+      width: 35,
       tintColor: '#fff',
     },
     cerrar: {
@@ -138,7 +149,7 @@ const DetailFood= ({ route }) => {
     trendingFood: {
       opacity: .4,
       width: Dimensions.get('window').width,
-      height: 300,
+      height: Dimensions.get('window').height / 2,
     },
     viewDetail: {
       flex: 1,
@@ -201,7 +212,7 @@ const DetailFood= ({ route }) => {
       marginBottom: -100, 
     },
     scrollView: {
-      marginTop: 400,
+      marginTop: (Dimensions.get('window').height / 2) + 100,
     },
   });
 
