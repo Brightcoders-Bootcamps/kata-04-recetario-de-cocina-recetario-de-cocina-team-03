@@ -26,6 +26,7 @@ import {
   TextInput,
   Pressable,
   Dimensions,
+  RefreshControl,
 } from 'react-native';
 
 import {
@@ -186,7 +187,22 @@ const styles = StyleSheet.create({
 
 export default App;
 
+const wait = (timeout) => {
+  return new Promise(resolve => {
+    setTimeout(resolve, timeout);
+  });
+}
+
 const HomeScreen = ({ navigation }) => {
+
+  const [refreshing, setRefreshing] = React.useState(false);
+  
+    const onRefresh = React.useCallback(() => {
+      setRefreshing(true);
+  
+      wait(2000).then(() => setRefreshing(false));
+    }, []);
+
   const ElementFood = (props) => {
     return (
       <ScrollView horizontal={true}>
@@ -219,7 +235,7 @@ const HomeScreen = ({ navigation }) => {
     return(
       <ScrollView horizontal={true}>
         {data.map( r =>
-          { if (r.status){
+          { if (r.love === '1'){
             return (
               <View style={styles.containerCardRecent} key={r.id}>
                 <Pressable
@@ -243,7 +259,12 @@ const HomeScreen = ({ navigation }) => {
         <SafeAreaView>
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}>
+            style={styles.scrollView}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+
+            >
             {global.HermesInternal == null ? null : (
               <View style={styles.engine}>
                 <Text style={styles.footer}>Engine: Hermes</Text>

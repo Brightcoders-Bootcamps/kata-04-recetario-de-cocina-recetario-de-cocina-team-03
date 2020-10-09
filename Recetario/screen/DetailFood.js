@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import App from '../App';
 
 // import data from './BDD/products';
 import {
@@ -21,6 +22,7 @@ import {
   TextInput,
   FlatList,
   Dimensions,
+  Pressable,
 } from 'react-native';
 
 import {
@@ -34,16 +36,40 @@ import {
 const DetailFood= ({ route }) => {
 
   const {food, title} = route.params;
+
+  function changeLike(){
+    console.log('+++'+food.love);
+    if(food.love === 0){
+      food.love = 1;
+    }else{
+      food.love = 0;
+    }
+    console.log(food.love);
+  }
   
   return (
     <>
         <View style={styles.topBar}>
           <View style={styles.leftButton}> 
-            <View style={styles.backButton}><Button title="X"/></View>
+            <View style={styles.backButton}>
+            <Pressable
+              onPress={() => {
+                navigation.navigate('Home')
+              }}>
+              <Image style={[styles.icons, styles.cerrar]} source={require('../images/boton-cerrar.png')} />
+            </Pressable>
+            </View>
           </View>
           <View style={styles.rightButtons}>
-            <View style={styles.shareButton}><Button title="S"/></View>
-            <View style={styles.likeButton}><Button title="L"/></View>
+            <View style={styles.shareButton}>
+            <Pressable
+              onPress={changeLike}>
+              <Image style={styles.icons} source={require('../images/like.png')} />
+              </Pressable>
+            </View>
+            <View style={styles.likeButton}>
+              <Image style={styles.icons} source={require('../images/share.png')} />
+            </View>
           </View>
         </View>
       <View style={styles.container}>
@@ -53,7 +79,7 @@ const DetailFood= ({ route }) => {
           <Image style={styles.trendingFood} source= {food.image} />
           <Text style={styles.textDetail}>{title}</Text>
           <Text style={styles.textName}>{food.name}</Text>
-          <Text style={styles.textDescription}>{`Ingredients \nfor 3  serving`}</Text>  
+          <Text style={styles.textDescription}>{`Ingredients \nfor ${food.servings} serving`}</Text> 
             {/* <ScrollView>  */}
               {food.ingredients.map( (r, index) =>
                 <View  style={styles.ingView} key={index}>
@@ -100,10 +126,19 @@ const DetailFood= ({ route }) => {
       width: 50,
 
     },
+    icons: {
+      height: 30,
+      width: 30,
+      tintColor: '#fff',
+    },
+    cerrar: {
+      height: 20,
+      width: 20,
+    },
     trendingFood: {
       opacity: .4,
       width: Dimensions.get('window').width,
-      height: 300,
+      height: Dimensions.get('window').width,
       zIndex: 0,
     },
     viewDetail: {
@@ -112,7 +147,7 @@ const DetailFood= ({ route }) => {
       bottom: 0, 
       left: 0, 
       right: 0,
-      },
+    },
     textDetail: {
       top: -90,
       textAlign: "left",
