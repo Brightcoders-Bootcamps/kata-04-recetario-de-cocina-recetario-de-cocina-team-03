@@ -80,15 +80,15 @@ const DetailFood= ({ route }) => {
           <Text style={styles.textDetail}>{title}</Text>
           <Text style={styles.textName}>{food.name}</Text>
           <Text style={styles.textDescription}>{`Ingredients \nfor ${food.servings} serving`}</Text> 
-            {/* <ScrollView>  */}
+        </View>  
+        <ScrollView style={styles.scrollView}> 
               {food.ingredients.map( (r, index) =>
                 <View  style={styles.ingView} key={index}>
                   <Text style={styles.ingredients}>{r.ingredient}</Text>
                   <Text style={styles.ingredients2}> {r.quantity}</Text>
                 </View>
               )}              
-            {/* </ScrollView> */}
-        </View>  
+            </ScrollView>
         </SafeAreaView>
       </View>
     </>
@@ -138,10 +138,10 @@ const DetailFood= ({ route }) => {
     trendingFood: {
       opacity: .4,
       width: Dimensions.get('window').width,
-      height: Dimensions.get('window').width,
-      zIndex: 0,
+      height: 300,
     },
     viewDetail: {
+      flex: 1,
       position: 'absolute', 
       top: 0, 
       bottom: 0, 
@@ -197,10 +197,11 @@ const DetailFood= ({ route }) => {
       marginRight: -10,
     },
     ingView: {
-      margin: 35
+      margin: 35,
+      marginBottom: -100, 
     },
     scrollView: {
-      backgroundColor: Colors.lighter,
+      marginTop: 400,
     },
   });
 
