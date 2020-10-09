@@ -12,7 +12,6 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import data from './BDD/products';
-import recentProducts from './BDD/recent';
 import DetailFood from './screen/DetailFood';
 import {
   SafeAreaView,
@@ -207,28 +206,23 @@ const HomeScreen = ({ navigation }) => {
     return (
       <ScrollView horizontal={true}>
         {data.map( r =>
-        <View style={styles.containerCard} key={r.id}>             
-          <Pressable
-                onPress={() => {
-                  navigation.navigate('DetailFood', { food: r, title: 'Trending' })
-                }}>
-              <Image  style={styles.foodCard} source={r.image} />
-              <Text style={styles.sectionTitle}>{r.name}</Text>
-              <Text style={styles.sectionTitle}>{r.description}</Text>
-          </Pressable>          
-         </View>
-        )} 
+          { if (r.love == '0'){
+            return (
+              <View style={styles.containerCard} key={r.id}>             
+                <Pressable
+                      onPress={() => {
+                        navigation.navigate('DetailFood', { food: r, title: 'Trending' })
+                      }}>
+                    <Image  style={styles.foodCard} source={r.image} />
+                    <Text style={styles.sectionTitle}>{r.name}</Text>
+                    <Text style={styles.sectionTitle}>{r.description}</Text>
+                </Pressable>          
+              </View>
+            )
+          }}
+        )}
       </ScrollView>
     );
-  }
-
-  function updateProducts(r){
-    if(recentProducts.length === 3){
-      recentProducts.pop();
-      recentProducts.unshift(r);
-    }else{
-      recentProducts.unshift(r);
-    }
   }
 
   const RecentFood = (props) => {
@@ -249,7 +243,7 @@ const HomeScreen = ({ navigation }) => {
               </View>
             )
           }}
-        )} 
+        )}
       </ScrollView>
     );     
   }

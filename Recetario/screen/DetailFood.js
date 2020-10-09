@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import App from '../App';
 
 // import data from './BDD/products';
@@ -21,6 +21,7 @@ import {
   Image, 
   Dimensions,
   Pressable,
+  
 } from 'react-native';
 
 import {
@@ -35,12 +36,14 @@ const DetailFood= ({ route, navigation }) => {
 
   const {food, title} = route.params;
 
+  const [isShowingText, setIsShowingText] = useState(food.love);
+
   function changeLike(){
     console.log('+++'+food.love);
-    if(food.love === 0){
-      food.love = 1;
+    if(food.love == "0"){
+      food.love = "1";
     }else{
-      food.love = 0;
+      food.love = "0";
     }
     console.log(food.love);
   }
@@ -62,7 +65,9 @@ const DetailFood= ({ route, navigation }) => {
             <View style={styles.likeButton}>
             <Pressable
               onPress={changeLike}>
-              <Image style={styles.iconLike} source={require('../images/like.png')} />
+              {food.love == "0" 
+                ? <Image style={styles.iconLike} source={require('../images/like.png')} /> 
+                : <Image style={styles.iconLike} source={require('../images/unlike.png')} />}
               </Pressable>
             </View>
             <View style={styles.shareButton}>
