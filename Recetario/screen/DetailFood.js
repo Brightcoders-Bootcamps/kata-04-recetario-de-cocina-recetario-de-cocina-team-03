@@ -82,7 +82,8 @@ const DetailFood= ({ route, navigation }) => {
           <Image style={styles.trendingFood} source= {food.image} />
           <Text style={styles.textDetail}>{title}</Text>
           <Text style={styles.textName}>{food.name}</Text>
-          <Text style={styles.textDescription}>{`Ingredients \nfor ${food.servings} serving`}</Text> 
+          <Text style={styles.textDescription}>{`Ingredients`}</Text>
+          <Text style={styles.textServings}>{`for ${food.servings} servings`}</Text> 
         </View>  
         <ScrollView style={styles.scrollView}> 
               {food.ingredients.map( (r, index) =>
@@ -187,29 +188,33 @@ const DetailFood= ({ route, navigation }) => {
       marginLeft: 20,
       lineHeight: 30,
     }, 
+    textServings:{
+      color: 'white',
+      top: -50,
+      fontSize: 15,
+      marginLeft: 20,
+      lineHeight: 30,
+    },
     ingredients: {
-      marginTop: 30,
+      marginTop: 15,
       color: 'white',
       top: -50,
       fontSize: 15,
       marginLeft: -10,
-      borderColor: 'white',
+      borderColor: 'darkgrey',
       borderStyle: 'solid',
-      borderBottomWidth: .2,
+      borderBottomWidth: .4,
       paddingBottom: 18,
       marginRight: -10,
     },
     ingredients2: {
       textAlign: 'right',
-      marginTop: 30,
+      marginTop: 28,
       color: 'white',
       top: -120,
       fontSize: 15,
       marginLeft: -10,
-      borderColor: 'white',
-      borderStyle: 'solid',
-      borderBottomWidth: .2,
-      paddingBottom: 18,
+      paddingBottom: 15,
       marginRight: -10,
     },
     ingView: {

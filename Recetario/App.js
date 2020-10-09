@@ -145,6 +145,8 @@ const styles = StyleSheet.create({
   },
   containerCardRecent:{
     height: 300,
+    marginRight: 70,
+    width: 110,
   },
   containerInput: {
     flexDirection: 'row'
