@@ -34,7 +34,7 @@ import {
 
 const DetailFood= ({ route, navigation }) => {
 
-  const {food, title} = route.params;
+  const {food, title,foodArr, setFood} = route.params;
 
   const [isShowingText, setIsShowingText] = useState(food.love);
 
@@ -46,6 +46,25 @@ const DetailFood= ({ route, navigation }) => {
       food.love = "0";
     }
     console.log(food.love);
+  }
+
+  function changeLike2(){
+    var index = foodArr.findIndex(x=> x.id === food.id);
+    let g = foodArr[index];
+    console.log('+++'+food.love);
+    if(food.love == "0"){
+      food.love = "1";      
+    }else{
+      food.love = "0";
+    }
+    console.log(food.love);
+    g = food;
+    setFood([
+      ...foodArr.slice(0,index),
+      g,
+      ...foodArr.slice(index+1)
+    ]
+            );
   }
   
   return (
@@ -64,7 +83,7 @@ const DetailFood= ({ route, navigation }) => {
           <View style={styles.rightButtons}>
             <View style={styles.likeButton}>
             <Pressable
-              onPress={changeLike}>
+              onPress={changeLike2}>
               {food.love == "0" 
                 ? <Image style={styles.iconLike} source={require('../images/like.png')} /> 
                 : <Image style={styles.iconLike} source={require('../images/unlike.png')} />}

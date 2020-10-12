@@ -204,16 +204,18 @@ const HomeScreen = ({ navigation }) => {
       wait(2000).then(() => setRefreshing(false));
     }, []);
 
+  const [foodArr, setFood] = React.useState(data);
+
   const ElementFood = (props) => {
     return (
       <ScrollView horizontal={true}>
-        {data.map( r =>
+        {foodArr.map( r =>
           { if (r.love == '0'){
             return (
               <View style={styles.containerCard} key={r.id}>             
                 <Pressable
                       onPress={() => {
-                        navigation.navigate('DetailFood', { food: r, title: 'Trending' })
+                        navigation.navigate('DetailFood', { food: r, title: 'Trending', foodArr:foodArr,setFood: setFood });
                       }}>
                     <Image  style={styles.foodCard} source={r.image} />
                     <Text style={styles.sectionTitle}>{r.name}</Text>
