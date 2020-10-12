@@ -198,14 +198,14 @@ const HomeScreen = ({ navigation }) => {
 
   const [refreshing, setRefreshing] = React.useState(false);
   
-    const onRefresh = React.useCallback(() => {
+  const onRefresh = React.useCallback(() => {
       setRefreshing(true);
   
       wait(2000).then(() => setRefreshing(false));
     }, []);
 
   const [foodArr, setFood] = React.useState(data);
-
+  
   const ElementFood = (props) => {
     return (
       <ScrollView horizontal={true}>
@@ -238,7 +238,7 @@ const HomeScreen = ({ navigation }) => {
               <View style={styles.containerCardRecent} key={r.id}>
                 <Pressable
                 onPress={() => {
-                  navigation.navigate('DetailFood', { food: r, title: 'Recent' })
+                  navigation.navigate('DetailFood', { food: r, title: 'Recent', foodArr:foodArr, setFood: setFood })
                 }}>
                   <Image style={styles.foodCardRecent} source={r.image} />
                   <Text style={styles.sectionTitleRecent}>{r.name}</Text>

@@ -34,9 +34,10 @@ import {
 
 const DetailFood= ({ route, navigation }) => {
 
-  const {food, title,foodArr, setFood} = route.params;
+  const {food, title, foodArr, setFood} = route.params;
 
   const [isShowingText, setIsShowingText] = useState(food.love);
+  const [isFav, setIsFav] = useState(food.love);
 
   function changeLike(){
     console.log('+++'+food.love);
@@ -49,22 +50,20 @@ const DetailFood= ({ route, navigation }) => {
   }
 
   function changeLike2(){
-    var index = foodArr.findIndex(x=> x.id === food.id);
-    let g = foodArr[index];
+    var index = foodArr.findIndex(element=> element.id === food.id);
     console.log('+++'+food.love);
     if(food.love == "0"){
-      food.love = "1";      
+      food.love = "1";            
     }else{
       food.love = "0";
     }
     console.log(food.love);
-    g = food;
+    setIsFav(food.love)
     setFood([
       ...foodArr.slice(0,index),
-      g,
+      food,
       ...foodArr.slice(index+1)
-    ]
-            );
+    ]);
   }
   
   return (
