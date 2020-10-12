@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     likeButton: {
       height: 50,
       width: 50,
-      paddingTop:10
+      paddingTop:20
     },
     icons: {
       height: 30,
