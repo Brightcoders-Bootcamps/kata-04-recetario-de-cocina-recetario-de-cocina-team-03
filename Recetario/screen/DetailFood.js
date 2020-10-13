@@ -52,13 +52,11 @@ const DetailFood= ({ route, navigation }) => {
 
   function changeLike2(){
     var index = foodArr.findIndex(element=> element.id === food.id);
-    console.log('+++'+food.love);
     if(food.love == "0"){
       food.love = "1";            
     }else{
       food.love = "0";
     }
-    console.log(food.love);
     setIsFav(food.love)
     setFood([
       ...foodArr.slice(0,index),

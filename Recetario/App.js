@@ -83,6 +83,7 @@ const HomeScreen = ({ navigation }) => {
     }, []);
 
   const [foodArr, setFood] = React.useState(data);
+  const [text, setText] = React.useState('');
   
   const ElementFood = (props) => {
     return (
@@ -129,6 +130,11 @@ const HomeScreen = ({ navigation }) => {
       </ScrollView>
     );     
   }
+
+  function search(){
+    console.log(text);
+  }
+
   return (
     <>
         <StatusBar barStyle="dark-content" />
@@ -149,13 +155,17 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.body}>
               <View style={styles.sectionContainer}>
                 <View style={styles.containerInput}>
-                  <View style={styles.searchView}>                       
+                  <View style={styles.searchView}>
+                  <Pressable onPress={search}>        
                     <Image  style={styles.searchImage} source={require('./images/search.png')} />
+                  </Pressable>
                   </View>
                   <TextInput
                     style={styles.textInput}
                     placeholder="What do you want to eat?"
-                    placeholderTextColor="#fff" 
+                    placeholderTextColor="#fff"
+                    onChangeText={text => setText(text)}
+                    value={text}
                   />                     
                   <View style={styles.recordView}>                       
                     <Image  style={styles.searchImage} source={require('./images/recordvoice.png')} />
