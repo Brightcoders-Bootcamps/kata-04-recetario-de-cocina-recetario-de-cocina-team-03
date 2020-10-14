@@ -12,12 +12,8 @@ const RecentFood = (props) => {
             <View style={styles.containerCardRecent} key={r.id}>
               <Pressable
                 onPress={() => {
-                  navigation.navigate('DetailFood', {
-                    food: r,
-                    title: 'Recent',
-                    foodArr: Arrfood,
-                    setFood: setFood,
-                  });
+                  navigation.navigate('DetailFood', { food: r, title: 'Recent', foodArr: Arrfood, setFood: setFood,
+                });
                 }}>
                 <Image style={styles.foodCardRecent} source={r.image} />
                 <Text style={styles.sectionTitleRecent}>{r.name}</Text>
