@@ -16,16 +16,14 @@ import DetailFood from './screen/DetailFood';
 import styles from './styles/stylesHome';
 import {
   SafeAreaView,
-  StyleSheet,
   ScrollView,
   View,
   Text,
   StatusBar,
-  Button,
   Image, 
   TextInput,
   Pressable,
-  Dimensions,
+  LogBox,
   RefreshControl,
 } from 'react-native';
 
@@ -38,6 +36,10 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 const Stack = createStackNavigator();
+
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state',
+]);
 
 const App: () => React$Node = () => {
   
@@ -86,8 +88,6 @@ const HomeScreen = ({ navigation }) => {
   const [text, setText] = React.useState('');
 
   React.useEffect( () => {
-    console.log("Text:" + text)
-    console.log(filterItems(text));
     setFood(filterItems(text));
   }, [text])
 
