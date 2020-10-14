@@ -3,10 +3,7 @@ import {ScrollView, View, Text, Image, Pressable} from 'react-native';
 import styles from '../styles/stylesHome';
 
 const RecentFood = (props) => {
-  let Arrfood = props.Arrfood;
-  let navigation = props.navigation;
-  let setFood = props.setFood;
-
+  const {Arrfood, navigation, setFood} = props;
   return (
     <ScrollView horizontal={true}>
       {Arrfood.map((r) => {
