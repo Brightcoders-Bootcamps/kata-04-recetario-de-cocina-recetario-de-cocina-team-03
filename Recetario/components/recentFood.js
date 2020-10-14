@@ -3,13 +3,13 @@ import {ScrollView, View, Text, Image, Pressable} from 'react-native';
 import styles from '../styles/stylesHome';
 
 const RecentFood = (props) => {
-  let foodArr = props.foodArr;
+  let Arrfood = props.Arrfood;
   let navigation = props.navigation;
   let setFood = props.setFood;
 
   return (
     <ScrollView horizontal={true}>
-      {foodArr.map((r) => {
+      {Arrfood.map((r) => {
         if (r.love === '1') {
           return (
             <View style={styles.containerCardRecent} key={r.id}>
@@ -18,7 +18,7 @@ const RecentFood = (props) => {
                   navigation.navigate('DetailFood', {
                     food: r,
                     title: 'Recent',
-                    foodArr: foodArr,
+                    foodArr: Arrfood,
                     setFood: setFood,
                   });
                 }}>

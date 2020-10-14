@@ -87,7 +87,7 @@ const HomeScreen = ({ navigation }) => {
                   <Text style={[styles.trending]}>TRENDING</Text>
                   <ElementFood foodArr={foodArr} navigation={navigation} setFood={setFood}/> 
                   <Text style={[styles.recent]}>RECENT</Text>
-                  <RecentFood foodArr={foodArr} navigation={navigation} setFood={setFood}/>
+                  <RecentFood Arrfood={foodArr} navigation={navigation} setFood={setFood}/>
                 </View>
               </View>
             </ScrollView>
