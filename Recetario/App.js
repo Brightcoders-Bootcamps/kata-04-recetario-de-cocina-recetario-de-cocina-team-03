@@ -84,6 +84,19 @@ const HomeScreen = ({ navigation }) => {
 
   const [foodArr, setFood] = React.useState(data);
   const [text, setText] = React.useState('');
+
+  React.useEffect( () => {
+    console.log("Text:" + text)
+    console.log(filterItems(text));
+    setFood(filterItems(text));
+  }, [text])
+
+  const filterItems = query => {
+    return data.filter((el) =>
+      el.name.toLowerCase().indexOf(query.toLowerCase()) > -1
+    );
+  }
+  
   
   const ElementFood = (props) => {
     return (
@@ -111,7 +124,7 @@ const HomeScreen = ({ navigation }) => {
   const RecentFood = (props) => {
     return(
       <ScrollView horizontal={true}>
-        {data.map( r =>
+        {foodArr.map( r =>
           { if (r.love === '1'){
             return (
               <View style={styles.containerCardRecent} key={r.id}>
