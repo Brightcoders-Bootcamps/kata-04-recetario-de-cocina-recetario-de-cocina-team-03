@@ -14,6 +14,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import data from './BDD/products';
 import DetailFood from './screen/DetailFood';
 import styles from './styles/stylesHome';
+import ElementFood from './components/elementFood';
 import {
   SafeAreaView,
   ScrollView,
@@ -27,13 +28,6 @@ import {
   RefreshControl,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 
 const Stack = createStackNavigator();
 
@@ -74,6 +68,8 @@ const wait = (timeout) => {
   });
 }
 
+
+
 const HomeScreen = ({ navigation }) => {
 
   const [refreshing, setRefreshing] = React.useState(false);
@@ -97,30 +93,6 @@ const HomeScreen = ({ navigation }) => {
     );
   }
   
-  
-  const ElementFood = (props) => {
-    return (
-      <ScrollView horizontal={true}>
-        {foodArr.map( r =>
-          { if (r.love == '0'){
-            return (
-              <View style={styles.containerCard} key={r.id}>             
-                <Pressable
-                      onPress={() => {
-                        navigation.navigate('DetailFood', { food: r, title: 'Trending', foodArr:foodArr,setFood: setFood });
-                      }}>
-                    <Image  style={styles.foodCard} source={r.image} />
-                    <Text style={styles.sectionTitle}>{r.name}</Text>
-                    <Text style={styles.sectionTitle}>{r.description}</Text>
-                </Pressable>          
-              </View>
-            )
-          }}
-        )}
-      </ScrollView>
-    );
-  }
-
   const RecentFood = (props) => {
     return(
       <ScrollView horizontal={true}>
@@ -185,7 +157,7 @@ const HomeScreen = ({ navigation }) => {
                   </View> 
                 </View>                
                 <Text style={[styles.trending]}>TRENDING</Text>
-                <ElementFood />                      
+                <ElementFood foodArr={foodArr} navigation={navigation} setFood={setFood}/>                      
                 {/* <ListFood /> */}
                 <Text style={[styles.recent]}>RECENT</Text>
                 <RecentFood />
