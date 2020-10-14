@@ -10,9 +10,7 @@ import styles from '../styles/stylesHome';
 
 
 const ElementFood = (props) => {
-    let  foodArr = props.foodArr;
-    let navigation = props.navigation;
-    let setFood = props.setFood;
+    const {foodArr, navigation, setFood} = props;
 
     return (
       <ScrollView horizontal={true}>
