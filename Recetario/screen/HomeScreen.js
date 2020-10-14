@@ -1,52 +1,65 @@
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import data from '../BDD/products';
+import styles from '../styles/stylesHome';
+import ElementFood from '../components/ElementFood';
+import RecentFood from '../components/RecentFood';
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  StatusBar,
+  Image, 
+  TextInput,
+  Pressable,
+  RefreshControl,
+} from 'react-native';
+
+const wait = (timeout) => {
+    return new Promise(resolve => {
+      setTimeout(resolve, timeout);
+    });
+  }
+  
 const HomeScreen = ({ navigation }) => {
-    const ElementFood = (props) => {
-      return (
-        <ScrollView horizontal={true}>
-          {data.map( r =>
-          <View style={styles.containerCard} key={r.id}>
-            <Image  style={styles.foodCard} source={r.image} />
-            <Text style={styles.sectionTitle}>{r.name}</Text>
-            <Text style={styles.sectionTitle}>{r.description}</Text>
-            <Button
-              title="Go to Jane's profile"
-              onPress={() =>
-                navigation.navigate('DetailFood', { name: 'Jane' })
-              }
-            />  
-           </View>
-          )} 
-        </ScrollView>
+  
+    const [refreshing, setRefreshing] = React.useState(false);
+    
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+    
+        wait(2000).then(() => setRefreshing(false));
+      }, []);
+  
+    const [foodArr, setFood] = React.useState(data);
+    const [text, setText] = React.useState('');
+  
+    React.useEffect( () => {
+      setFood(filterItems(text));
+    }, [text])
+  
+    const filterItems = query => {
+      return data.filter((el) =>
+        el.name.toLowerCase().indexOf(query.toLowerCase()) > -1
       );
     }
   
-    function changeStatus(){
-      console.log("Entro a cambio de estado");
+    function search(){
+      console.log(text);
     }
   
-    const RecentFood = (props) => {
-      return(
-        <ScrollView horizontal={true}>
-          {data.map( r =>
-            { if (r.status){
-              return (
-                <View style={styles.containerCardRecent} key={r.id}>
-                  <Image style={styles.foodCardRecent} source={r.image} />
-                  <Text style={styles.sectionTitleRecent}>{r.name}</Text>
-                  <Text style={styles.sectionTitleRecent}>{r.description}</Text>
-                </View>
-              )
-            }}
-          )} 
-        </ScrollView>
-      );     
-    }
     return (
       <>
           <StatusBar barStyle="dark-content" />
           <SafeAreaView>
             <ScrollView
               contentInsetAdjustmentBehavior="automatic"
-              style={styles.scrollView}>
+              style={styles.scrollView}
+              refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+              }
+              >
               {global.HermesInternal == null ? null : (
                 <View style={styles.engine}>
                   <Text style={styles.footer}>Engine: Hermes</Text>
@@ -54,26 +67,27 @@ const HomeScreen = ({ navigation }) => {
               )}
               <View style={styles.body}>
                 <View style={styles.sectionContainer}>
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="What do you want to eat?"
-                  />
-                  <Text style={[styles.trending]}>TRENDING!</Text>
-                  <Stack.Screen
-                    name="Home"
-                    component={HomeScreen}
-                    options={{ title: 'Welcome' }}
-                  />
-                  <ElementFood />                         
-                  {/* <ListFood /> */}
-                  <Text style={[styles.recent]}>RECENT!</Text>
-                  <RecentFood />
-                  <Button
-                    title="Next Screen"
-                    onPress={() =>
-                      navigation.navigate(DetailFood)
-                    }
-                  />
+                  <View style={styles.containerInput}>
+                    <View style={styles.searchView}>
+                    <Pressable onPress={search}>        
+                      <Image  style={styles.searchImage} source={require('../images/search.png')} />
+                    </Pressable>
+                    </View>
+                    <TextInput
+                      style={styles.textInput}
+                      placeholder="What do you want to eat?"
+                      placeholderTextColor="#fff"
+                      onChangeText={text => setText(text)}
+                      value={text}
+                    />                     
+                    <View style={styles.recordView}>                       
+                      <Image  style={styles.searchImage} source={require('../images/recordvoice.png')} />
+                    </View> 
+                  </View>                
+                  <Text style={[styles.trending]}>TRENDING</Text>
+                  <ElementFood foodArr={foodArr} navigation={navigation} setFood={setFood}/> 
+                  <Text style={[styles.recent]}>RECENT</Text>
+                  <RecentFood foodArr={foodArr} navigation={navigation} setFood={setFood}/>
                 </View>
               </View>
             </ScrollView>
@@ -82,4 +96,4 @@ const HomeScreen = ({ navigation }) => {
     );
   };
 
-  export default HomeScreen;
+export default HomeScreen;
