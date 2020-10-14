@@ -36,19 +36,7 @@ import {
 const DetailFood= ({ route, navigation }) => {
 
   const {food, title, foodArr, setFood} = route.params;
-
-  const [isShowingText, setIsShowingText] = useState(food.love);
   const [isFav, setIsFav] = useState(food.love);
-
-  function changeLike(){
-    console.log('+++'+food.love);
-    if(food.love == "0"){
-      food.love = "1";
-    }else{
-      food.love = "0";
-    }
-    console.log(food.love);
-  }
 
   function changeLike2(){
     var index = foodArr.findIndex(element=> element.id === food.id);
